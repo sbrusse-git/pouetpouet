@@ -1,0 +1,50 @@
+{
+  "hero": {
+    "file": "public/images/hero.webp",
+    "prompt": "Belgian foodtruck catering trailer at dusk in a courtyard, real towable trailer with open barbecue station, not a van, warm string lights and cosy event lighting around it, adults gathering with drinks and relaxed smiles, chef team serving grilled food, chic but approachable atmosphere, cinematic warm smoke and embers, premium event photography, wide composition with space for website headline, no visible text, no logos, no watermarks",
+    "size": {
+      "width": 1600,
+      "height": 900
+    }
+  },
+  "concept": {
+    "file": "public/images/concept.webp",
+    "prompt": "Four passionate cooks around a stylish catering trailer preparing a live barbecue service, real mobile trailer setup, not a converted van, candid teamwork, stainless grill, trays of fresh ingredients, warm natural light, documentary editorial food photography, friendly energy, premium but human, no visible text, no logos, no watermarks",
+    "size": {
+      "width": 1200,
+      "height": 1500
+    }
+  },
+  "lunch": {
+    "file": "public/images/lunch.webp",
+    "prompt": "Corporate lunch event in Belgium with a compact barbecue catering trailer parked in a modern office courtyard, employees in smart casual clothes eating outdoors, daylight, efficient service, premium foodtruck trailer setup, clean and inviting atmosphere, no visible text, no logos, no watermarks",
+    "size": {
+      "width": 1200,
+      "height": 900
+    }
+  },
+  "birthday": {
+    "file": "public/images/birthday.webp",
+    "prompt": "Adult birthday garden party at golden hour with a barbecue trailer serving guests, cosy string lights overhead, warm flames and smoke, long tables, glasses raised, stylish but relaxed mood, unmistakably a towable food trailer not a van, beautiful evening event photography, no visible text, no logos, no watermarks",
+    "size": {
+      "width": 1200,
+      "height": 900
+    }
+  },
+  "grill": {
+    "file": "public/images/grill.webp",
+    "prompt": "Close-up plated hotdog served from a premium catering trailer, deep blue ceramic plate, toasted brioche bun, grilled sausage, generous yellow mustard drizzle, glossy relish or chutney, finely chopped red onion, one hand presenting the plate, shallow depth of field, warm street food trailer lighting, editorial food photography inspired by a candid event snapshot, mouth-watering texture, no visible text, no logos, no watermarks",
+    "size": {
+      "width": 1400,
+      "height": 900
+    }
+  },
+  "setup": {
+    "file": "public/images/setup.webp",
+    "prompt": "Wide evening scene of a stylish catering trailer set up for an afterwork event, guinguette string lights, standing tables, soft smoke from barbecue, elegant crowd of adults, premium hospitality atmosphere, clearly a trailer with barbecue station, not a van, no visible text, no logos, no watermarks",
+    "size": {
+      "width": 1200,
+      "height": 900
+    }
+  }
+}
