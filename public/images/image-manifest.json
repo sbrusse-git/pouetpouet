@@ -1,7 +1,7 @@
 {
   "hero": {
     "file": "public/images/hero.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact four real Pouet Pouet team members and the exact compact trailer-cart. Keep the trailer-cart the same size and proportions as in the references: a compact waist-high single-axle barbecue cart that can be pushed by hand, with a flat-top griddle and blue-and-red metal body, not a large food truck, not a catering trailer and not a van. Stage the same four people at dusk in a beautiful Belgian courtyard with warm string lights, elegant guests, smoke from the grill and a premium event atmosphere. All four team members must be visible, recognizable and central. No extra staff. No readable text or logos on the trailer.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Keep the trailer-cart the same size and proportions as in the references: a compact waist-high single-axle barbecue cart that can be pushed by hand, with a flat-top griddle and blue-and-red metal body, not a large food truck, not a catering trailer and not a van. The same four people must stay recognizable but they should all be dressed in clean professional black chef suits suitable for premium catering service. Place the exact dark logo reference as a real printed decal on the visible side of the trailer, integrated into the trailer design. Do not invent any other text or branding. Stage the same four people at dusk in a beautiful Belgian courtyard with warm string lights, elegant guests, smoke from the grill and a premium event atmosphere. All four team members must be visible, recognizable and central. No extra staff.",
     "size": {
       "width": 1600,
       "height": 900
@@ -9,13 +9,13 @@
     "mode": "edit",
     "references": [
       "team",
-      "trailer"
-    ],
-    "logo_decal": "public/brand/logo-dark.png"
+      "trailer",
+      "logo"
+    ]
   },
   "concept": {
     "file": "public/images/concept.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. Create a warm documentary-style portrait of the four people around the small trailer during service prep, smiling, cooking and plating together. Keep the real scale and design from the references: a small single-axle blue-and-red barbecue cart with a flat-top griddle, compact enough to push by hand. Natural light, candid teamwork, premium but human, all four people clearly visible, no extra staff, no readable text or logos.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Create a warm documentary-style portrait of the four people around the small trailer during service prep, smiling, cooking and plating together. Keep the real scale and design from the references: a small single-axle blue-and-red barbecue cart with a flat-top griddle, compact enough to push by hand. Dress all four recognizable team members in professional black chef suits. Place the exact dark logo reference as a real printed decal on the visible side of the trailer, and make it the only visible branding on the trailer. Remove any HOT-DOG, HAMBURGER or other text from the trailer body. Natural light, candid teamwork, premium but human, all four people clearly visible, no extra staff, no invented text.",
     "size": {
       "width": 1200,
       "height": 1500
@@ -23,13 +23,13 @@
     "mode": "edit",
     "references": [
       "team",
-      "trailer"
-    ],
-    "logo_decal": "public/brand/logo-dark.png"
+      "trailer",
+      "logo"
+    ]
   },
   "lunch": {
     "file": "public/images/lunch.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. Create a Belgian corporate lunch scene in daylight with the small trailer set in a modern office courtyard. The same four people are serving and cooking for employees in smart casual clothes. Keep the cart exactly in the spirit of the references: a small single-axle blue-and-red metal barbecue cart with a flat-top griddle, modest and realistic, not a full-size truck and not a large trailer. All four team members must appear in the scene. No readable text or logos.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Create a Belgian corporate lunch scene in daylight with the small trailer set in a modern office courtyard. The same four people are serving and cooking for employees in smart casual clothes. Keep the cart exactly in the spirit of the references: a small single-axle blue-and-red metal barbecue cart with a flat-top griddle, modest and realistic, not a full-size truck and not a large trailer. All four recognizable team members must wear professional black chef suits and appear in the scene. Place the exact dark logo reference as a real printed decal on the visible side of the trailer. No invented text or branding.",
     "size": {
       "width": 1200,
       "height": 900
@@ -37,13 +37,13 @@
     "mode": "edit",
     "references": [
       "team",
-      "trailer"
-    ],
-    "logo_decal": "public/brand/logo-dark.png"
+      "trailer",
+      "logo"
+    ]
   },
   "birthday": {
     "file": "public/images/birthday.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. Create an adult birthday garden party at golden hour with cosy string lights, warm flames, long wooden tables and the same four people serving from the small trailer. Keep the trailer exactly like the reference cart: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, low to the ground and much smaller than a normal trailer. Stylish, warm, relaxed, all four team members visible, no extra staff, no readable text or logos.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Create an adult birthday garden party at golden hour with cosy string lights, warm flames, long wooden tables and the same four people serving from the small trailer. Keep the trailer exactly like the reference cart: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, low to the ground and much smaller than a normal trailer. Dress all four recognizable team members in professional black chef suits. Place the exact dark logo reference as a real printed decal on the visible side of the trailer. Stylish, warm, relaxed, all four team members visible, no extra staff, no invented text.",
     "size": {
       "width": 1200,
       "height": 900
@@ -51,9 +51,9 @@
     "mode": "edit",
     "references": [
       "team",
-      "trailer"
-    ],
-    "logo_decal": "public/brand/logo-dark.png"
+      "trailer",
+      "logo"
+    ]
   },
   "grill": {
     "file": "public/images/grill.webp",
@@ -65,7 +65,7 @@
   },
   "setup": {
     "file": "public/images/setup.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. Create a wide evening afterwork scene with the small trailer set up under guinguette lights, barbecue smoke, standing tables and a premium crowd. The same four people should be visible around the trailer in service. Keep the cart exactly like the references: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, compact and realistic, not a large trailer and not a van. No readable text or logos.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Create a wide evening afterwork scene with the small trailer set up under guinguette lights, barbecue smoke, standing tables and a premium crowd. The same four people should be visible around the trailer in service. Keep the cart exactly like the references: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, compact and realistic, not a large trailer and not a van. Dress all four recognizable team members in professional black chef suits. Place the exact dark logo reference as a real printed decal on the visible side of the trailer. No invented text or branding.",
     "size": {
       "width": 1200,
       "height": 900
@@ -73,12 +73,13 @@
     "mode": "edit",
     "references": [
       "team",
-      "trailer"
-    ],
-    "logo_decal": "public/brand/logo-dark.png"
+      "trailer",
+      "logo"
+    ]
   },
   "_references": {
     "team": "https://r2.wedesignyour.site/pouetpouet/reference/image_ppl.jpg",
-    "trailer": "https://r2.wedesignyour.site/pouetpouet/reference/image_trailer.jpg"
+    "trailer": "https://r2.wedesignyour.site/pouetpouet/reference/image_trailer.jpg",
+    "logo": "https://r2.wedesignyour.site/pouetpouet/reference/logo-dark-reference.png"
   }
 }

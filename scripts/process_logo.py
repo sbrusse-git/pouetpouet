@@ -8,6 +8,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "assets" / "source" / "logo-sheet.jpg"
+ASSET_DIR = ROOT / "assets" / "source"
 BRAND_DIR = ROOT / "public" / "brand"
 APP_DIR = ROOT / "app"
 
@@ -26,6 +27,7 @@ def make_transparent(image: Image.Image, background: Iterable[int], threshold: i
 
 
 def save_logo_variants() -> None:
+    ASSET_DIR.mkdir(parents=True, exist_ok=True)
     BRAND_DIR.mkdir(parents=True, exist_ok=True)
     APP_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -33,6 +35,8 @@ def save_logo_variants() -> None:
     width, height = source.size
     top_crop = source.crop((135, 105, width - 135, 700))
     bottom_crop = source.crop((135, 900, width - 135, height - 110))
+
+    bottom_crop.save(ASSET_DIR / "logo-dark-reference.png")
 
     dark_logo = make_transparent(top_crop, background=(255, 255, 255), threshold=42)
     light_logo = make_transparent(bottom_crop, background=(61, 46, 41), threshold=38)

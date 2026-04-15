@@ -3,13 +3,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import mimetypes
 import os
 import time
 import urllib.request
 from pathlib import Path
 
 import boto3
-from PIL import Image, ImageDraw
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "public" / "images"
@@ -18,10 +19,10 @@ SIBLING_ENV_PATH = ROOT.parent / "wedesignyoursite" / ".env"
 QUEUE_URL = "https://queue.fal.run/fal-ai/nano-banana-2"
 EDIT_QUEUE_URL = "https://queue.fal.run/fal-ai/nano-banana-2/edit"
 REFERENCE_PREFIX = "pouetpouet/reference"
-LOGO_DECAL_PATH = ROOT / "public" / "brand" / "logo-dark.png"
 REFERENCE_SOURCES = {
     "team": ROOT / "assets" / "source" / "image_ppl.jpg",
     "trailer": ROOT / "assets" / "source" / "image_trailer.jpg",
+    "logo": ROOT / "assets" / "source" / "logo-dark-reference.png",
 }
 
 ASPECT_RATIOS = {
@@ -30,68 +31,68 @@ ASPECT_RATIOS = {
     (1200, 1500): "4:5",
 }
 
-LOGO_PLACEMENTS = {
-    "hero": [
-        [(576, 486), (806, 486), (802, 540), (578, 541)],
-    ],
-    "concept": [
-        [(162, 846), (430, 878), (425, 925), (160, 898)],
-    ],
-    "lunch": [
-        [(490, 630), (744, 642), (739, 687), (489, 676)],
-    ],
-    "birthday": [
-        [(371, 607), (619, 607), (615, 655), (371, 655)],
-    ],
-    "setup": [
-        [(458, 573), (691, 573), (686, 621), (458, 622)],
-    ],
-}
-
 PROMPTS = {
     "hero": {
         "size": (1600, 900),
         "mode": "edit",
-        "references": ["team", "trailer"],
+        "references": ["team", "trailer", "logo"],
         "prompt": (
-            "Use the uploaded reference images as hard reference for the exact four real Pouet Pouet team members and the exact compact trailer-cart. "
+            "Use the uploaded reference images as hard reference for the exact four real Pouet Pouet team members, the exact compact trailer-cart, "
+            "and the exact dark Pouet Pouet logo from the lower dark colorway reference. "
+            "Use the people reference for identity, faces and body types only, not for clothing. "
             "Keep the trailer-cart the same size and proportions as in the references: a compact waist-high single-axle barbecue cart that can be pushed by hand, "
             "with a flat-top griddle and blue-and-red metal body, not a large food truck, not a catering trailer and not a van. "
+            "The same four people must stay recognizable but they should all be dressed in clean professional black chef suits suitable for premium catering service. "
+            "Place the exact dark logo reference as a real printed decal on the visible side of the trailer, integrated into the trailer design. "
+            "Do not invent any other text or branding. "
             "Stage the same four people at dusk in a beautiful Belgian courtyard with warm string lights, elegant guests, smoke from the grill and a premium event atmosphere. "
-            "All four team members must be visible, recognizable and central. No extra staff. No readable text or logos on the trailer."
+            "All four team members must be visible, recognizable and central. No extra staff."
         ),
     },
     "concept": {
         "size": (1200, 1500),
         "mode": "edit",
-        "references": ["team", "trailer"],
+        "references": ["team", "trailer", "logo"],
         "prompt": (
-            "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. "
+            "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, "
+            "and the exact dark Pouet Pouet logo from the lower dark colorway reference. "
+            "Use the people reference for identity, faces and body types only, not for clothing. "
             "Create a warm documentary-style portrait of the four people around the small trailer during service prep, smiling, cooking and plating together. "
             "Keep the real scale and design from the references: a small single-axle blue-and-red barbecue cart with a flat-top griddle, compact enough to push by hand. "
-            "Natural light, candid teamwork, premium but human, all four people clearly visible, no extra staff, no readable text or logos."
+            "Dress all four recognizable team members in professional black chef suits. "
+            "Place the exact dark logo reference as a real printed decal on the visible side of the trailer, and make it the only visible branding on the trailer. "
+            "Remove any HOT-DOG, HAMBURGER or other text from the trailer body. "
+            "Natural light, candid teamwork, premium but human, all four people clearly visible, no extra staff, no invented text."
         ),
     },
     "lunch": {
         "size": (1200, 900),
         "mode": "edit",
-        "references": ["team", "trailer"],
+        "references": ["team", "trailer", "logo"],
         "prompt": (
-            "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. "
+            "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, "
+            "and the exact dark Pouet Pouet logo from the lower dark colorway reference. "
+            "Use the people reference for identity, faces and body types only, not for clothing. "
             "Create a Belgian corporate lunch scene in daylight with the small trailer set in a modern office courtyard. "
             "The same four people are serving and cooking for employees in smart casual clothes. Keep the cart exactly in the spirit of the references: a small single-axle blue-and-red metal barbecue cart with a flat-top griddle, "
-            "modest and realistic, not a full-size truck and not a large trailer. All four team members must appear in the scene. No readable text or logos."
+            "modest and realistic, not a full-size truck and not a large trailer. "
+            "All four recognizable team members must wear professional black chef suits and appear in the scene. "
+            "Place the exact dark logo reference as a real printed decal on the visible side of the trailer. No invented text or branding."
         ),
     },
     "birthday": {
         "size": (1200, 900),
         "mode": "edit",
-        "references": ["team", "trailer"],
+        "references": ["team", "trailer", "logo"],
         "prompt": (
-            "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. "
+            "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, "
+            "and the exact dark Pouet Pouet logo from the lower dark colorway reference. "
+            "Use the people reference for identity, faces and body types only, not for clothing. "
             "Create an adult birthday garden party at golden hour with cosy string lights, warm flames, long wooden tables and the same four people serving from the small trailer. "
             "Keep the trailer exactly like the reference cart: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, low to the ground and much smaller than a normal trailer. "
-            "Stylish, warm, relaxed, all four team members visible, no extra staff, no readable text or logos."
+            "Dress all four recognizable team members in professional black chef suits. "
+            "Place the exact dark logo reference as a real printed decal on the visible side of the trailer. "
+            "Stylish, warm, relaxed, all four team members visible, no extra staff, no invented text."
         ),
     },
     "grill": {
@@ -107,97 +108,19 @@ PROMPTS = {
     "setup": {
         "size": (1200, 900),
         "mode": "edit",
-        "references": ["team", "trailer"],
+        "references": ["team", "trailer", "logo"],
         "prompt": (
-            "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. "
+            "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, "
+            "and the exact dark Pouet Pouet logo from the lower dark colorway reference. "
+            "Use the people reference for identity, faces and body types only, not for clothing. "
             "Create a wide evening afterwork scene with the small trailer set up under guinguette lights, barbecue smoke, standing tables and a premium crowd. "
             "The same four people should be visible around the trailer in service. Keep the cart exactly like the references: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, "
             "compact and realistic, not a large trailer and not a van. "
-            "No readable text or logos."
+            "Dress all four recognizable team members in professional black chef suits. "
+            "Place the exact dark logo reference as a real printed decal on the visible side of the trailer. No invented text or branding."
         ),
     },
 }
-
-
-def gaussian_elimination(matrix: list[list[float]], values: list[float]) -> list[float]:
-    size = len(values)
-    augmented = [row[:] + [values[index]] for index, row in enumerate(matrix)]
-
-    for pivot_index in range(size):
-        pivot_row = max(range(pivot_index, size), key=lambda row: abs(augmented[row][pivot_index]))
-        if abs(augmented[pivot_row][pivot_index]) < 1e-12:
-            raise RuntimeError("Unable to solve perspective transform")
-        augmented[pivot_index], augmented[pivot_row] = augmented[pivot_row], augmented[pivot_index]
-
-        pivot = augmented[pivot_index][pivot_index]
-        for column in range(pivot_index, size + 1):
-            augmented[pivot_index][column] /= pivot
-
-        for row in range(size):
-            if row == pivot_index:
-                continue
-            factor = augmented[row][pivot_index]
-            if factor == 0:
-                continue
-            for column in range(pivot_index, size + 1):
-                augmented[row][column] -= factor * augmented[pivot_index][column]
-
-    return [augmented[index][size] for index in range(size)]
-
-
-def perspective_coefficients(destination_points: list[tuple[int, int]], source_points: list[tuple[int, int]]) -> list[float]:
-    matrix: list[list[float]] = []
-    values: list[float] = []
-
-    for (dest_x, dest_y), (src_x, src_y) in zip(destination_points, source_points):
-        matrix.append([dest_x, dest_y, 1, 0, 0, 0, -src_x * dest_x, -src_x * dest_y])
-        values.append(src_x)
-        matrix.append([0, 0, 0, dest_x, dest_y, 1, -src_y * dest_x, -src_y * dest_y])
-        values.append(src_y)
-
-    return gaussian_elimination(matrix, values)
-
-
-def build_logo_decal() -> Image.Image:
-    with Image.open(LOGO_DECAL_PATH).convert("RGBA") as logo:
-        pad_x = max(36, logo.width // 12)
-        pad_y = max(20, logo.height // 4)
-        decal = Image.new("RGBA", (logo.width + pad_x * 2, logo.height + pad_y * 2), (252, 247, 239, 238))
-        decal.paste(logo, (pad_x, pad_y), logo)
-        border = max(2, decal.height // 28)
-        ImageDraw.Draw(decal).rectangle(
-            (border // 2, border // 2, decal.width - 1 - border // 2, decal.height - 1 - border // 2),
-            outline=(32, 24, 20, 165),
-            width=border,
-        )
-        return decal
-
-
-def apply_logo_decals(image_path: Path, target_name: str) -> None:
-    placements = LOGO_PLACEMENTS.get(target_name, [])
-    if not placements:
-        return
-
-    with Image.open(image_path).convert("RGBA") as base:
-        for placement in placements:
-            decal = build_logo_decal()
-            source = [
-                (0, 0),
-                (decal.width - 1, 0),
-                (decal.width - 1, decal.height - 1),
-                (0, decal.height - 1),
-            ]
-            coeffs = perspective_coefficients(placement, source)
-            warped = decal.transform(
-                base.size,
-                Image.PERSPECTIVE,
-                coeffs,
-                Image.BICUBIC,
-                fillcolor=(0, 0, 0, 0),
-            )
-            base.alpha_composite(warped)
-
-        base.convert("RGB").save(image_path, "WEBP", quality=92, method=6)
 
 
 def build_manifest_entry(name: str, config: dict) -> dict:
@@ -211,8 +134,6 @@ def build_manifest_entry(name: str, config: dict) -> dict:
         entry["mode"] = config["mode"]
     if config.get("references"):
         entry["references"] = config["references"]
-    if name in LOGO_PLACEMENTS:
-        entry["logo_decal"] = str(LOGO_DECAL_PATH.relative_to(ROOT))
     return entry
 
 
@@ -276,11 +197,12 @@ def upload_reference_images() -> dict[str, str]:
         if not source_path.exists():
             raise RuntimeError(f"Missing reference source: {source_path}")
         object_key = f"{REFERENCE_PREFIX}/{source_path.name}"
+        content_type = mimetypes.guess_type(source_path.name)[0] or "application/octet-stream"
         client.put_object(
             Bucket=bucket,
             Key=object_key,
             Body=source_path.read_bytes(),
-            ContentType="image/jpeg",
+            ContentType=content_type,
             CacheControl="public, max-age=31536000",
         )
         urls[name] = f"https://r2.wedesignyour.site/{object_key}"
@@ -334,13 +256,11 @@ def generate_image(name: str, config: dict, key: str, reference_urls: dict[str, 
 
     output_path = OUTPUT_DIR / f"{name}.webp"
     download_to_webp(images[0]["url"], output_path)
-    apply_logo_decals(output_path, name)
     return build_manifest_entry(name, config)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--logos-only", action="store_true", help="Apply the logo decal to existing images without regenerating them.")
     parser.add_argument("targets", nargs="*", help="Image ids to generate. Default: all.")
     return parser.parse_args()
 
@@ -355,19 +275,6 @@ def main() -> None:
 
     manifest_path = OUTPUT_DIR / "image-manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
-
-    if args.logos_only:
-        for name in targets:
-            output_path = OUTPUT_DIR / f"{name}.webp"
-            if not output_path.exists():
-                raise RuntimeError(f"Missing generated image: {output_path}")
-            print(f"Branding {name}...")
-            apply_logo_decals(output_path, name)
-            manifest[name] = build_manifest_entry(name, PROMPTS[name])
-
-        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
-        print("Done.")
-        return
 
     key = load_fal_key()
     reference_urls = upload_reference_images()
