@@ -1,35 +1,55 @@
 {
   "hero": {
     "file": "public/images/hero.webp",
-    "prompt": "Belgian foodtruck catering trailer at dusk in a courtyard, real towable trailer with open barbecue station, not a van, warm string lights and cosy event lighting around it, adults gathering with drinks and relaxed smiles, chef team serving grilled food, chic but approachable atmosphere, cinematic warm smoke and embers, premium event photography, wide composition with space for website headline, no visible text, no logos, no watermarks",
+    "prompt": "Use the uploaded reference images as hard reference for the exact four real Pouet Pouet team members and the exact compact trailer-cart. Keep the trailer-cart the same size and proportions as in the references: a compact waist-high single-axle barbecue cart that can be pushed by hand, with a flat-top griddle and blue-and-red metal body, not a large food truck, not a catering trailer and not a van. Stage the same four people at dusk in a beautiful Belgian courtyard with warm string lights, elegant guests, smoke from the grill and a premium event atmosphere. All four team members must be visible, recognizable and central. No extra staff. No readable text or logos on the trailer.",
     "size": {
       "width": 1600,
       "height": 900
-    }
+    },
+    "mode": "edit",
+    "references": [
+      "team",
+      "trailer"
+    ]
   },
   "concept": {
     "file": "public/images/concept.webp",
-    "prompt": "Four passionate cooks around a stylish catering trailer preparing a live barbecue service, real mobile trailer setup, not a converted van, candid teamwork, stainless grill, trays of fresh ingredients, warm natural light, documentary editorial food photography, friendly energy, premium but human, no visible text, no logos, no watermarks",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. Create a warm documentary-style portrait of the four people around the small trailer during service prep, smiling, cooking and plating together. Keep the real scale and design from the references: a small single-axle blue-and-red barbecue cart with a flat-top griddle, compact enough to push by hand. Natural light, candid teamwork, premium but human, all four people clearly visible, no extra staff, no readable text or logos.",
     "size": {
       "width": 1200,
       "height": 1500
-    }
+    },
+    "mode": "edit",
+    "references": [
+      "team",
+      "trailer"
+    ]
   },
   "lunch": {
     "file": "public/images/lunch.webp",
-    "prompt": "Corporate lunch event in Belgium with a compact barbecue catering trailer parked in a modern office courtyard, employees in smart casual clothes eating outdoors, daylight, efficient service, premium foodtruck trailer setup, clean and inviting atmosphere, no visible text, no logos, no watermarks",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. Create a Belgian corporate lunch scene in daylight with the small trailer set in a modern office courtyard. The same four people are serving and cooking for employees in smart casual clothes. Keep the cart exactly in the spirit of the references: a small single-axle blue-and-red metal barbecue cart with a flat-top griddle, modest and realistic, not a full-size truck and not a large trailer. All four team members must appear in the scene. No readable text or logos.",
     "size": {
       "width": 1200,
       "height": 900
-    }
+    },
+    "mode": "edit",
+    "references": [
+      "team",
+      "trailer"
+    ]
   },
   "birthday": {
     "file": "public/images/birthday.webp",
-    "prompt": "Adult birthday garden party at golden hour with a barbecue trailer serving guests, cosy string lights overhead, warm flames and smoke, long tables, glasses raised, stylish but relaxed mood, unmistakably a towable food trailer not a van, beautiful evening event photography, no visible text, no logos, no watermarks",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. Create an adult birthday garden party at golden hour with cosy string lights, warm flames, long wooden tables and the same four people serving from the small trailer. Keep the trailer exactly like the reference cart: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, low to the ground and much smaller than a normal trailer. Stylish, warm, relaxed, all four team members visible, no extra staff, no readable text or logos.",
     "size": {
       "width": 1200,
       "height": 900
-    }
+    },
+    "mode": "edit",
+    "references": [
+      "team",
+      "trailer"
+    ]
   },
   "grill": {
     "file": "public/images/grill.webp",
@@ -41,10 +61,19 @@
   },
   "setup": {
     "file": "public/images/setup.webp",
-    "prompt": "Wide evening scene of a stylish catering trailer set up for an afterwork event, guinguette string lights, standing tables, soft smoke from barbecue, elegant crowd of adults, premium hospitality atmosphere, clearly a trailer with barbecue station, not a van, no visible text, no logos, no watermarks",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members and the exact compact trailer-cart. Create a wide evening afterwork scene with the small trailer set up under guinguette lights, barbecue smoke, standing tables and a premium crowd. The same four people should be visible around the trailer in service. Keep the cart exactly like the references: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, compact and realistic, not a large trailer and not a van. No readable text or logos.",
     "size": {
       "width": 1200,
       "height": 900
-    }
+    },
+    "mode": "edit",
+    "references": [
+      "team",
+      "trailer"
+    ]
+  },
+  "_references": {
+    "team": "https://r2.wedesignyour.site/pouetpouet/reference/image_ppl.jpg",
+    "trailer": "https://r2.wedesignyour.site/pouetpouet/reference/image_trailer.jpg"
   }
 }

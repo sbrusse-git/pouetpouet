@@ -30,7 +30,7 @@ const promiseCards = [
   {
     number: "02",
     title: "Quatre passionnés aux commandes",
-    text: "On vient avec la cuisine, le feu, le sens du timing et la bonne énergie. L'idée n'est pas juste de nourrir, mais d'installer un vrai moment.",
+    text: "Une équipe qualifiée, avec de l'expérience en restauration et en traiteur. On vient avec la cuisine, le feu, le sens du timing et la bonne énergie.",
   },
   {
     number: "03",
@@ -238,9 +238,9 @@ export default function Page() {
                       visible, généreuse.
                     </p>
                     <p>
-                      Nous sommes quatre, passionnés de cuisine et de bons délires, avec une obsession
-                      simple: faire en sorte que vous puissiez vraiment vivre votre événement pendant qu&apos;on
-                      régale vos invités.
+                      Nous sommes quatre, passionnés de cuisine et de bons délires, avec une vraie
+                      expérience en restauration et en traiteur. Notre obsession reste simple: vous
+                      laisser vivre votre événement pendant qu&apos;on régale vos invités.
                     </p>
                   </div>
                 </RevealOnScroll>
@@ -277,6 +277,7 @@ export default function Page() {
                       </p>
                       <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--text-soft)]">
                         <li>Feu, cuisson minute et service qui reste fluide.</li>
+                        <li>Une équipe qualifiée qui connaît les réflexes du terrain.</li>
                         <li>Une présence visuelle soignée, pas un simple stand.</li>
                         <li>Un format mobile qui respecte le lieu et son rythme.</li>
                       </ul>
