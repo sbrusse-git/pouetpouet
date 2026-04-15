@@ -9,7 +9,7 @@ import urllib.request
 from pathlib import Path
 
 import boto3
-from PIL import Image
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "public" / "images"
@@ -18,6 +18,7 @@ SIBLING_ENV_PATH = ROOT.parent / "wedesignyoursite" / ".env"
 QUEUE_URL = "https://queue.fal.run/fal-ai/nano-banana-2"
 EDIT_QUEUE_URL = "https://queue.fal.run/fal-ai/nano-banana-2/edit"
 REFERENCE_PREFIX = "pouetpouet/reference"
+LOGO_DECAL_PATH = ROOT / "public" / "brand" / "logo-dark.png"
 REFERENCE_SOURCES = {
     "team": ROOT / "assets" / "source" / "image_ppl.jpg",
     "trailer": ROOT / "assets" / "source" / "image_trailer.jpg",
@@ -27,6 +28,24 @@ ASPECT_RATIOS = {
     (1600, 900): "16:9",
     (1200, 900): "4:3",
     (1200, 1500): "4:5",
+}
+
+LOGO_PLACEMENTS = {
+    "hero": [
+        [(576, 486), (806, 486), (802, 540), (578, 541)],
+    ],
+    "concept": [
+        [(162, 846), (430, 878), (425, 925), (160, 898)],
+    ],
+    "lunch": [
+        [(490, 630), (744, 642), (739, 687), (489, 676)],
+    ],
+    "birthday": [
+        [(371, 607), (619, 607), (615, 655), (371, 655)],
+    ],
+    "setup": [
+        [(458, 573), (691, 573), (686, 621), (458, 622)],
+    ],
 }
 
 PROMPTS = {
@@ -98,6 +117,103 @@ PROMPTS = {
         ),
     },
 }
+
+
+def gaussian_elimination(matrix: list[list[float]], values: list[float]) -> list[float]:
+    size = len(values)
+    augmented = [row[:] + [values[index]] for index, row in enumerate(matrix)]
+
+    for pivot_index in range(size):
+        pivot_row = max(range(pivot_index, size), key=lambda row: abs(augmented[row][pivot_index]))
+        if abs(augmented[pivot_row][pivot_index]) < 1e-12:
+            raise RuntimeError("Unable to solve perspective transform")
+        augmented[pivot_index], augmented[pivot_row] = augmented[pivot_row], augmented[pivot_index]
+
+        pivot = augmented[pivot_index][pivot_index]
+        for column in range(pivot_index, size + 1):
+            augmented[pivot_index][column] /= pivot
+
+        for row in range(size):
+            if row == pivot_index:
+                continue
+            factor = augmented[row][pivot_index]
+            if factor == 0:
+                continue
+            for column in range(pivot_index, size + 1):
+                augmented[row][column] -= factor * augmented[pivot_index][column]
+
+    return [augmented[index][size] for index in range(size)]
+
+
+def perspective_coefficients(destination_points: list[tuple[int, int]], source_points: list[tuple[int, int]]) -> list[float]:
+    matrix: list[list[float]] = []
+    values: list[float] = []
+
+    for (dest_x, dest_y), (src_x, src_y) in zip(destination_points, source_points):
+        matrix.append([dest_x, dest_y, 1, 0, 0, 0, -src_x * dest_x, -src_x * dest_y])
+        values.append(src_x)
+        matrix.append([0, 0, 0, dest_x, dest_y, 1, -src_y * dest_x, -src_y * dest_y])
+        values.append(src_y)
+
+    return gaussian_elimination(matrix, values)
+
+
+def build_logo_decal() -> Image.Image:
+    with Image.open(LOGO_DECAL_PATH).convert("RGBA") as logo:
+        pad_x = max(36, logo.width // 12)
+        pad_y = max(20, logo.height // 4)
+        decal = Image.new("RGBA", (logo.width + pad_x * 2, logo.height + pad_y * 2), (252, 247, 239, 238))
+        decal.paste(logo, (pad_x, pad_y), logo)
+        border = max(2, decal.height // 28)
+        ImageDraw.Draw(decal).rectangle(
+            (border // 2, border // 2, decal.width - 1 - border // 2, decal.height - 1 - border // 2),
+            outline=(32, 24, 20, 165),
+            width=border,
+        )
+        return decal
+
+
+def apply_logo_decals(image_path: Path, target_name: str) -> None:
+    placements = LOGO_PLACEMENTS.get(target_name, [])
+    if not placements:
+        return
+
+    with Image.open(image_path).convert("RGBA") as base:
+        for placement in placements:
+            decal = build_logo_decal()
+            source = [
+                (0, 0),
+                (decal.width - 1, 0),
+                (decal.width - 1, decal.height - 1),
+                (0, decal.height - 1),
+            ]
+            coeffs = perspective_coefficients(placement, source)
+            warped = decal.transform(
+                base.size,
+                Image.PERSPECTIVE,
+                coeffs,
+                Image.BICUBIC,
+                fillcolor=(0, 0, 0, 0),
+            )
+            base.alpha_composite(warped)
+
+        base.convert("RGB").save(image_path, "WEBP", quality=92, method=6)
+
+
+def build_manifest_entry(name: str, config: dict) -> dict:
+    width, height = config["size"]
+    entry = {
+        "file": str((OUTPUT_DIR / f"{name}.webp").relative_to(ROOT)),
+        "prompt": config["prompt"],
+        "size": {"width": width, "height": height},
+    }
+    if config.get("mode"):
+        entry["mode"] = config["mode"]
+    if config.get("references"):
+        entry["references"] = config["references"]
+    if name in LOGO_PLACEMENTS:
+        entry["logo_decal"] = str(LOGO_DECAL_PATH.relative_to(ROOT))
+    return entry
 
 
 def load_env_value(key: str, *paths: Path) -> str:
@@ -192,7 +308,6 @@ def build_payload(config: dict, reference_urls: dict[str, str]) -> tuple[str, di
 
 
 def generate_image(name: str, config: dict, key: str, reference_urls: dict[str, str]) -> dict:
-    width, height = config["size"]
     queue_url, payload = build_payload(config, reference_urls)
     submit = fal_request(
         "POST",
@@ -219,17 +334,13 @@ def generate_image(name: str, config: dict, key: str, reference_urls: dict[str, 
 
     output_path = OUTPUT_DIR / f"{name}.webp"
     download_to_webp(images[0]["url"], output_path)
-    return {
-        "file": str(output_path.relative_to(ROOT)),
-        "prompt": config["prompt"],
-        "size": {"width": width, "height": height},
-        "mode": config.get("mode", "generate"),
-        "references": config.get("references", []),
-    }
+    apply_logo_decals(output_path, name)
+    return build_manifest_entry(name, config)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--logos-only", action="store_true", help="Apply the logo decal to existing images without regenerating them.")
     parser.add_argument("targets", nargs="*", help="Image ids to generate. Default: all.")
     return parser.parse_args()
 
@@ -237,8 +348,6 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     args = parse_args()
-    key = load_fal_key()
-    reference_urls = upload_reference_images()
     targets = args.targets or list(PROMPTS.keys())
     unknown = [target for target in targets if target not in PROMPTS]
     if unknown:
@@ -246,6 +355,22 @@ def main() -> None:
 
     manifest_path = OUTPUT_DIR / "image-manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+
+    if args.logos_only:
+        for name in targets:
+            output_path = OUTPUT_DIR / f"{name}.webp"
+            if not output_path.exists():
+                raise RuntimeError(f"Missing generated image: {output_path}")
+            print(f"Branding {name}...")
+            apply_logo_decals(output_path, name)
+            manifest[name] = build_manifest_entry(name, PROMPTS[name])
+
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
+        print("Done.")
+        return
+
+    key = load_fal_key()
+    reference_urls = upload_reference_images()
     manifest["_references"] = reference_urls
 
     for name in targets:
@@ -253,7 +378,7 @@ def main() -> None:
         print(f"Generating {name}...")
         manifest[name] = generate_image(name, config, key, reference_urls)
 
-    manifest_path.write_text(json.dumps(manifest, indent=2))
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
     print("Done.")
 
 

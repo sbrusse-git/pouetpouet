@@ -10,7 +10,8 @@
     "references": [
       "team",
       "trailer"
-    ]
+    ],
+    "logo_decal": "public/brand/logo-dark.png"
   },
   "concept": {
     "file": "public/images/concept.webp",
@@ -23,7 +24,8 @@
     "references": [
       "team",
       "trailer"
-    ]
+    ],
+    "logo_decal": "public/brand/logo-dark.png"
   },
   "lunch": {
     "file": "public/images/lunch.webp",
@@ -36,7 +38,8 @@
     "references": [
       "team",
       "trailer"
-    ]
+    ],
+    "logo_decal": "public/brand/logo-dark.png"
   },
   "birthday": {
     "file": "public/images/birthday.webp",
@@ -49,7 +52,8 @@
     "references": [
       "team",
       "trailer"
-    ]
+    ],
+    "logo_decal": "public/brand/logo-dark.png"
   },
   "grill": {
     "file": "public/images/grill.webp",
@@ -70,7 +74,8 @@
     "references": [
       "team",
       "trailer"
-    ]
+    ],
+    "logo_decal": "public/brand/logo-dark.png"
   },
   "_references": {
     "team": "https://r2.wedesignyour.site/pouetpouet/reference/image_ppl.jpg",
