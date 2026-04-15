@@ -1,7 +1,7 @@
 {
   "hero": {
     "file": "public/images/hero.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Keep the trailer-cart the same size and proportions as in the references: a compact waist-high single-axle barbecue cart that can be pushed by hand, with a flat-top griddle and blue-and-red metal body, not a large food truck, not a catering trailer and not a van. The same four people must stay recognizable but they should all be dressed in clean professional black chef suits suitable for premium catering service. Place the exact dark logo reference as a real printed decal on the visible side of the trailer, integrated into the trailer design. Do not invent any other text or branding. Stage the same four people at dusk in a beautiful Belgian courtyard with warm string lights, elegant guests, smoke from the grill and a premium event atmosphere. All four team members must be visible, recognizable and central. No extra staff.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact four real Pouet Pouet team members, the exact compact trailer-cart, the exact dark Pouet Pouet logo from the lower dark colorway reference, and the exact branded side-panel look from the panel reference. Use the people reference for identity, faces and body types only, not for clothing. Keep the trailer-cart the same size and proportions as in the references: a compact waist-high single-axle barbecue cart that can be pushed by hand, with a flat-top griddle, metallic frame and hardware, not a large food truck, not a catering trailer and not a van. The entire visible long side of the trailer must be a solid dark chocolate-brown panel matching the dark background color of the logo reference. Center the exact dark logo on that long side exactly like the side-panel reference. There must be no blue, no red, no stars, no stripes and no other graphics on the long side panels. The same four people must stay recognizable but they should all be dressed in clean professional full-black chef uniforms suitable for premium catering service: black chef jackets, black trousers, optional black aprons only. No beige aprons, no brown leather aprons and no colored clothing accents. Do not invent any other text or branding. Stage the same four people at dusk in a beautiful Belgian courtyard with warm string lights, elegant guests, smoke from the grill and a premium event atmosphere. All four team members must be visible, recognizable and central. No extra staff.",
     "size": {
       "width": 1600,
       "height": 900
@@ -10,12 +10,13 @@
     "references": [
       "team",
       "trailer",
-      "logo"
+      "logo",
+      "panel"
     ]
   },
   "concept": {
     "file": "public/images/concept.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Create a warm documentary-style portrait of the four people around the small trailer during service prep, smiling, cooking and plating together. Keep the real scale and design from the references: a small single-axle blue-and-red barbecue cart with a flat-top griddle, compact enough to push by hand. Dress all four recognizable team members in professional black chef suits. Place the exact dark logo reference as a real printed decal on the visible side of the trailer, and make it the only visible branding on the trailer. Remove any HOT-DOG, HAMBURGER or other text from the trailer body. Natural light, candid teamwork, premium but human, all four people clearly visible, no extra staff, no invented text.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, the exact dark Pouet Pouet logo from the lower dark colorway reference, and the exact branded side-panel look from the panel reference. Use the people reference for identity, faces and body types only, not for clothing. Create a warm documentary-style portrait of the four people around the small trailer during service prep, smiling, cooking and plating together. Keep the real scale and mechanics from the references: a small single-axle barbecue cart with a flat-top griddle, compact enough to push by hand. Use a camera angle that clearly shows one full long side panel of the trailer, not only the short front side. The entire visible long side of the trailer must be a solid dark chocolate-brown panel matching the side-panel reference background. Center the exact dark logo on that long side exactly like the side-panel reference. Remove any blue, red, stars, stripes, HOT-DOG, HAMBURGER or other graphics from the long side panels. Dress all four recognizable team members in professional full-black chef uniforms with black jackets, black trousers and optional black aprons only. No beige aprons, no brown leather aprons and no colored clothing accents. Natural light, candid teamwork, premium but human, all four people clearly visible, no extra staff, no invented text.",
     "size": {
       "width": 1200,
       "height": 1500
@@ -24,12 +25,13 @@
     "references": [
       "team",
       "trailer",
-      "logo"
+      "logo",
+      "panel"
     ]
   },
   "lunch": {
     "file": "public/images/lunch.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Create a Belgian corporate lunch scene in daylight with the small trailer set in a modern office courtyard. The same four people are serving and cooking for employees in smart casual clothes. Keep the cart exactly in the spirit of the references: a small single-axle blue-and-red metal barbecue cart with a flat-top griddle, modest and realistic, not a full-size truck and not a large trailer. All four recognizable team members must wear professional black chef suits and appear in the scene. Place the exact dark logo reference as a real printed decal on the visible side of the trailer. No invented text or branding.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, the exact dark Pouet Pouet logo from the lower dark colorway reference, and the exact branded side-panel look from the panel reference. Use the people reference for identity, faces and body types only, not for clothing. Create a Belgian corporate lunch scene in daylight with the small trailer set in a modern office courtyard. The same four people are serving and cooking for employees in smart casual office wear. Keep the cart exactly in the spirit of the references: a small single-axle metal barbecue cart with a flat-top griddle, modest and realistic, not a full-size truck and not a large trailer. The entire visible long side of the trailer must be a solid dark chocolate-brown panel matching the side-panel reference background. Center the exact dark logo on that long side exactly like the side-panel reference. There must be no blue, no red, no stars, no stripes and no other graphics on the long side panels. All four recognizable team members must wear professional full-black chef uniforms and appear in the scene. Use black jackets, black trousers and optional black aprons only. No beige aprons, no brown leather aprons and no colored clothing accents. No invented text or branding.",
     "size": {
       "width": 1200,
       "height": 900
@@ -38,12 +40,13 @@
     "references": [
       "team",
       "trailer",
-      "logo"
+      "logo",
+      "panel"
     ]
   },
   "birthday": {
     "file": "public/images/birthday.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Create an adult birthday garden party at golden hour with cosy string lights, warm flames, long wooden tables and the same four people serving from the small trailer. Keep the trailer exactly like the reference cart: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, low to the ground and much smaller than a normal trailer. Dress all four recognizable team members in professional black chef suits. Place the exact dark logo reference as a real printed decal on the visible side of the trailer. Stylish, warm, relaxed, all four team members visible, no extra staff, no invented text.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, the exact dark Pouet Pouet logo from the lower dark colorway reference, and the exact branded side-panel look from the panel reference. Use the people reference for identity, faces and body types only, not for clothing. Create an adult birthday garden party at golden hour with cosy string lights, warm flames, long wooden tables and the same four people serving from the small trailer. Keep the trailer exactly like the reference cart in scale and mechanics: a tiny single-axle barbecue cart with a flat-top griddle, low to the ground and much smaller than a normal trailer. The entire visible long side of the trailer must be a solid dark chocolate-brown panel matching the side-panel reference background. Center the exact dark logo on that long side exactly like the side-panel reference. There must be no blue, no red, no stars, no stripes and no other graphics on the long side panels. Dress all four recognizable team members in professional full-black chef uniforms with black jackets, black trousers and optional black aprons only. No beige aprons, no brown leather aprons and no colored clothing accents. Stylish, warm, relaxed, all four team members visible, no extra staff, no invented text.",
     "size": {
       "width": 1200,
       "height": 900
@@ -52,7 +55,8 @@
     "references": [
       "team",
       "trailer",
-      "logo"
+      "logo",
+      "panel"
     ]
   },
   "grill": {
@@ -65,7 +69,7 @@
   },
   "setup": {
     "file": "public/images/setup.webp",
-    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, and the exact dark Pouet Pouet logo from the lower dark colorway reference. Use the people reference for identity, faces and body types only, not for clothing. Create a wide evening afterwork scene with the small trailer set up under guinguette lights, barbecue smoke, standing tables and a premium crowd. The same four people should be visible around the trailer in service. Keep the cart exactly like the references: a tiny single-axle blue-and-red barbecue cart with a flat-top griddle, compact and realistic, not a large trailer and not a van. Dress all four recognizable team members in professional black chef suits. Place the exact dark logo reference as a real printed decal on the visible side of the trailer. No invented text or branding.",
+    "prompt": "Use the uploaded reference images as hard reference for the exact same four real Pouet Pouet team members, the exact compact trailer-cart, the exact dark Pouet Pouet logo from the lower dark colorway reference, and the exact branded side-panel look from the panel reference. Use the people reference for identity, faces and body types only, not for clothing. Create a wide evening afterwork scene with the small trailer set up under guinguette lights, barbecue smoke, standing tables and a premium crowd. The same four people should be visible around the trailer in service. Keep the cart exactly like the references in scale and mechanics: a tiny single-axle barbecue cart with a flat-top griddle, compact and realistic, not a large trailer and not a van. The entire visible long side of the trailer must be a solid dark chocolate-brown panel matching the side-panel reference background. Center the exact dark logo on that long side exactly like the side-panel reference. There must be no blue, no red, no stars, no stripes and no other graphics on the long side panels. Dress all four recognizable team members in professional full-black chef uniforms with black jackets, black trousers and optional black aprons only. No beige aprons, no brown leather aprons and no colored clothing accents. No invented text or branding.",
     "size": {
       "width": 1200,
       "height": 900
@@ -74,12 +78,14 @@
     "references": [
       "team",
       "trailer",
-      "logo"
+      "logo",
+      "panel"
     ]
   },
   "_references": {
     "team": "https://r2.wedesignyour.site/pouetpouet/reference/image_ppl.jpg",
     "trailer": "https://r2.wedesignyour.site/pouetpouet/reference/image_trailer.jpg",
-    "logo": "https://r2.wedesignyour.site/pouetpouet/reference/logo-dark-reference.png"
+    "logo": "https://r2.wedesignyour.site/pouetpouet/reference/logo-dark-reference.png",
+    "panel": "https://r2.wedesignyour.site/pouetpouet/reference/trailer-side-panel-reference.png"
   }
 }

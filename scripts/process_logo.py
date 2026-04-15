@@ -41,6 +41,15 @@ def save_logo_variants() -> None:
     dark_logo = make_transparent(top_crop, background=(255, 255, 255), threshold=42)
     light_logo = make_transparent(bottom_crop, background=(61, 46, 41), threshold=38)
 
+    panel_size = (1800, 760)
+    panel_background = Image.new("RGB", panel_size, (61, 46, 41))
+    panel_logo = make_transparent(bottom_crop, background=(61, 46, 41), threshold=72)
+    panel_logo.thumbnail((1120, 520))
+    panel_x = (panel_background.width - panel_logo.width) // 2
+    panel_y = (panel_background.height - panel_logo.height) // 2
+    panel_background.paste(panel_logo, (panel_x, panel_y), panel_logo)
+    panel_background.save(ASSET_DIR / "trailer-side-panel-reference.png")
+
     dark_logo.save(BRAND_DIR / "logo-dark.png")
     light_logo.save(BRAND_DIR / "logo-light.png")
 
